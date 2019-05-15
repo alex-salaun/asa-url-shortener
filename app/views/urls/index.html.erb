@@ -1,0 +1,58 @@
+<% if alert || notice %>
+  <div class='row mt-2 mb-2'>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+      <% if @url.errors %>
+        <div class="w-100"></div>
+        <ul>
+          <% @url.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class='row mb-4'>
+  <%= render 'form' %>
+</div>
+
+<div class='row'>
+  <% if @urls.any? %>
+    <div class='table-responsive'>
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th><%= t('views.urls.index.origin_url') %></th>
+            <th><%= t('views.urls.index.target_url') %></th>
+            <th><%= t('views.urls.index.hits_number') %></th>
+            <th><%= t('views.urls.index.creation_date') %></th>
+            <th><%= t('views.urls.index.expiration_date') %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @urls.each do |url| %>
+            <tr>
+              <td><%= url.origin_url %></td>
+              <td><%= [root_url, url.slug].join %></td>
+              <td><%= url.hits %></td>
+              <td><%= l url.created_at, format: :short %></td>
+              <td><%= l url.expiration_date %></td>
+              <td><%= link_to t('views.urls.index.expire'), url_path(id: url.id, url: { expiration_date: Date.today - 1.day }), method: :put, class: 'btn btn-secondary' unless url.expired? %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="row px-3 py-3 mx-auto text-center">
+      <p><%= t('views.urls.index.no_urls') %></p>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+google_url:
+  origin_url: 'https://www.google.com'
+  slug: 'iojNvUVh'
+  expiration_date: 2020-05-15
+  hits: 0
+
+expired_url:
+  origin_url: 'https://www.test.com'
+  slug: 'yhvGtRaa'
+  expiration_date: 2019-05-01
+  hits: 3

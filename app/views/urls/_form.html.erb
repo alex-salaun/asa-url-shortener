@@ -1,0 +1,10 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center col-8">
+  <%= form_for @url do |f| %>
+    <div class='input-group'>
+      <%= f.text_field :origin_url, class: 'form-control col-12', placeholder: t('views.urls.form.origin_url_placeholder') %>
+      <div class='input-group-append'>
+        <%= f.submit t('views.urls.form.submit'), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>
